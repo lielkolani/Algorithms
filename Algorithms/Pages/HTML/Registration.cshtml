@@ -1,0 +1,89 @@
+﻿@page
+@model Algorithms.Pages.HTML.RegistrationModel
+@{
+    Layout = null;
+}
+<html lang="he" dir="rtl">
+<head>
+    <title>Algorithms | Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5 mb-5 card p-2" style="width: 35rem;">
+  <div class="card-body row justify-content-center">
+    <div class="">
+       <div class="">
+            <div class="col-md-8 col-lg-11">
+                <h3 class="card-title text-center">הרשמה</h3>
+                <form class="" action="/index" method="get">
+                <div class="form-group">
+                    <label for="username">שם משתמש</label>
+                    <input type="text" class="form-control bg-body-secondary mt-2" id="username" aria-describedby="username" placeholder="שם משתמש" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="password">סיסמה</label>
+                    <input type="password" class="form-control bg-body-secondary mt-2" id="password" placeholder="סיסמה" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="confirmpassword">אישור סיסמה</label>
+                    <input type="password" class="form-control bg-body-secondary mt-2" id="confirmpassword" placeholder="אישור סיסמה" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="firstname">שם פרטי</label>
+                    <input type="text" class="form-control bg-body-secondary mt-2" id="firstname" placeholder="שם פרטי" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="lastname">שם משפחה</label>
+                    <input type="text" class="form-control bg-body-secondary mt-2" id="lastname" placeholder="שם משפחה" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="city">עיר מגורים</label>
+                    <input type="text" class="form-control bg-body-secondary mt-2" id="city" placeholder="עיר מגורים" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="phone">מספר טלפון</label>
+                    <input type="tel" class="form-control bg-body-secondary mt-2" id="phone" placeholder="972+" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="email">כתובת אימייל</label>
+                    <input type="email" class="form-control bg-body-secondary mt-2" id="email" placeholder="כתובת אימייל" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="date">תאריך לידה</label>
+                    <input type="date" class="form-control bg-body-secondary mt-2" id="date" placeholder="תאריך לידה" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="gender">מין</label>
+                </div>
+                <div class="form-check form-check-inline mt-2">
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="male" required>
+                    <label class="form-check-label" for="gender">זכר</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="female" required>
+                    <label class="form-check-label" for="gender">נקבה</label>
+                </div>
+                <div class="mt-2">
+                    <label for="security-question" class="form-label">שאלה לשחזור סיסמה</label>
+                    <select class="form-select mt-2" id="security-question" name="security_question">
+                        <option value="" selected disabled>בחר שאלה...</option>
+                        <option value="pet">שם של חיית מחמד</option>
+                        <option value="school">שם בית ספר יסודי</option>
+                    </select>
+                    <input type="text" class="form-control bg-body-secondary mt-2" id="security-answer" name="security_answer" placeholder="הכנס את התשובה שלך" required>
+                </div>
+                <p class="form-footer mt-2"><a href="Login">התחברות</a></p>
+                <button type="submit" class="btn btn-primary">הירשם</button>
+                <button type="reset" class="btn btn-primary">אתחול</button>
+                </form>
+            </div>
+       </div>
+    </div>
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

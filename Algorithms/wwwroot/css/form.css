@@ -1,0 +1,54 @@
+﻿
+
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: dodgerblue;
+    font-size: 32px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input {
+
+    width:500px ;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-border: sizing-box
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    HTML CSS border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+a:hover {
+    color:orangered
+}

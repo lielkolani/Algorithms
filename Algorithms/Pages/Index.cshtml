@@ -1,0 +1,164 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <title>Algorithms | Landing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- a library which allows to represent math expressions using latex, for O(n), O(logn) and more.-->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container px-4 py-4 text-end" dir="rtl" style="max-width: 72rem;">
+        <div class="mb-4">
+            <h1 class="fw-bold mb-2">מהו אלגוריתם?</h1>
+            <p class="fs-5 text-secondary mb-0">
+                אלגוריתם הוא סדרה של הוראות ברורות ושלב אחר שלב לפתרון בעיה או ביצוע משימה.
+            </p>
+        </div>
+
+        <div class="mb-5">
+            <h5 class="fw-bold mb-3">כל אלגוריתם בנוי משלושה חלקים:</h5>
+
+            <div class="row align-items-center text-center g-2">
+                <div class="col-12 col-md">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <span class="badge bg-primary-subtle text-primary mb-2">1</span>
+                            <h5 class="card-title fw-bold text-primary mb-1">קלט</h5>
+                            <h6 class="card-subtitle mb-2 text-muted small">המצרכים לעוגה</h6>
+                            <p class="card-text small mb-0">
+                                הנתונים שמעבירים לאלגוריתם – כמו קמח, סוכר וביצים.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-auto fs-3 text-primary fw-bold">
+                    <span class="d-none d-md-inline">&larr;</span>
+                    <span class="d-inline d-md-none">&darr;</span>
+                </div>
+
+                <div class="col-12 col-md">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <span class="badge bg-primary-subtle text-primary mb-2">2</span>
+                            <h5 class="card-title fw-bold text-primary mb-1">עיבוד</h5>
+                            <h6 class="card-subtitle mb-2 text-muted small">המתכון לעוגה</h6>
+                            <p class="card-text small mb-0">
+                                השלבים שמתבצעים לפי הסדר – כמו כמה למדוד וכמה זמן לאפות.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-auto fs-3 text-primary fw-bold">
+                    <span class="d-none d-md-inline">&larr;</span>
+                    <span class="d-inline d-md-none">&darr;</span>
+                </div>
+
+                <div class="col-12 col-md">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <span class="badge bg-success-subtle text-success mb-2">3</span>
+                            <h5 class="card-title fw-bold text-success mb-1">פלט</h5>
+                            <h6 class="card-subtitle mb-2 text-muted small">העוגה</h6>
+                            <p class="card-text small mb-0">
+                                התוצר הסופי שמתקבל מהקלט ומההוראות המפורטות.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 align-items-center mb-5">
+            <div class="col-12 col-lg-8">
+                <div class="card border-0 shadow-sm rounded-3 mb-3">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-2">הוראות חד-משמעיות</h5>
+                        <p class="mb-2">
+                            הוראות לאלגוריתם חייבות להיות מדויקות וחד-משמעיות.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            אם רובוט יודע ללכת רק קדימה, לא מספיק לומר לו "ללכת שמאלה" – צריך להורות לו להסתובב $90^\circ$ נגד כיוון השעון ואז להתקדם.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-2">אלגוריתם כפונקציה</h5>
+                        <p class="mb-2">
+                            אפשר לחשוב על אלגוריתם כפונקציה שמקבלת קלט ומחזירה פלט לפי כלל ברור.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            למשל, בפונקציה $f(x) = 2x$ מכניסים קלט $x$, מכפילים ב-$2$ ומקבלים את הפלט $2x$.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4 text-center">
+                <div class="card border-0 shadow-sm rounded-3 p-3">
+                    <img src="~/images/meme.gif" class="img-fluid rounded-2 mx-auto" style="max-height: 250px;" alt="מם הומוריסטי על אלגוריתמים" />
+                    <small class="text-muted mt-2 d-block">כשמריצים אלגוריתם בלי להכין אותו מראש... <br />(Family Guy S4P1 - 2005)</small>
+                </div>
+            </div>
+        </div>
+        <div class="mb-5">
+            <h2 class="fw-bold mb-3">על מה נלמד באתר?</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">חיפוש ומיון</h5>
+                            <p class="card-text small text-secondary mb-0">
+                                חיפוש בינארי, מיון בועות, מיון מיזוג, מיון הכנסה ומיון מהיר.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">סיבוכיות ורקורסיה</h5>
+                            <p class="card-text small text-secondary mb-0">
+                                ניתוח יעילות של אלגוריתמים והבנת פתרון בעיות בעזרת רקורסיה.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm rounded-3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">הצפנה, דחיסה ומשחקים</h5>
+                            <p class="card-text small text-secondary mb-0">
+                                הצפנה, דחיסת קבצים ותרגול אינטראקטיבי כמו "נחש את המספר".
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary btn-lg px-4" href="/HTML/NumberGuess">התחל ללמוד &larr;</a>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+﻿@page
+@model Algorithms.Pages.HTML.NumberGuessModel
+@{
+}
+
+<html lang="he" dir="rtl">
+<head>
+    <title>Algorithms | Number Guess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- a library which allows to represent math expressions using latex, for O(n), O(logn) and more.-->
+    <script>
+            window.MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                }
+            };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-light">
+<div class="container px-4 py-4 text-end" dir="rtl" style="max-width: 72rem;">
+    <h1 class="fw-bold">משחק - נחש את המספר</h1>
+    <p class="fs-5 text-secondary mb-0">
+            בוחרים מספר כלשהו בטווח 1-100. מה מספר השאלות המינימלי שלדעתכם אפשר לשאול (של האם המספר גדול/קטן מ..) על מנת למצוא את המספר?
+            נסו לשבור את השיא שלכם ולמצוא את המספר בכמה שפחות שאלות:
+    </p>
+   
+    <h4 class="text-center">(משחק שנממש בעתיד)</h4>
+    <details>
+        <summary class="text-primary">לחצו כאן כשסיימתם לשחק</summary>
+        <p>אם הצלחתם להגיע ל-7 נסיונות ופחות, כנראה שבכל ניחוש חציתם את הטווח בחצי עד שהגעתם רק ל-2 אפשרויות.</p>
+            <div class="card border-0 shadow-sm rounded-3 my-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title fw-bold mb-2">דוגמה: איך מוצאים את המספר 27?</h5>
+                    <p class="text-secondary small mb-3">
+                        אם המספר הוא 27, בכל שאלה נחצה את הטווח האפשרי בערך לשניים:
+                    </p>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>50</strong>?
+                            <span class="badge bg-info-subtle text-dark ms-1">קטן – נחפש מתחתיו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 1-50
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>25</strong>?
+                            <span class="badge bg-warning-subtle text-dark ms-1">גדול – נחפש מעליו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 25-50
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>37</strong>?
+                            <span class="badge bg-info-subtle text-dark ms-1">קטן – נחפש מתחתיו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 25-37
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>31</strong>?
+                            <span class="badge bg-info-subtle text-dark ms-1">קטן – נחפש מתחתיו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 25-31
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>28</strong>?
+                            <span class="badge bg-info-subtle text-dark ms-1">קטן – נחפש מתחתיו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 25-28
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            האם המספר גדול, קטן או שווה ל-<strong>26</strong>?
+                            <span class="badge bg-warning-subtle text-dark ms-1">גדול – נחפש מעליו</span>
+                            <span class="badge bg-secondary-subtle text-dark flex-shrink-0">
+                                טווח נוכחי: 26-28
+                            </span>
+                        </li>
+                        <li class="list-group-item px-0 fw-bold text-success">
+                            המספר הוא 27!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-3 mb-3">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">למה דווקא עד 7 ניחושים?</h5>
+                    <p class="mb-0">
+                        בכל ניחוש אנחנו חוצים את הטווח האפשרי לשניים, ולכן מצמצמים את מספר האפשרויות במהירות.
+                        בטווח $1\text{–}100$, כמות השאלות המרבית בשיטה הזו היא עד $7$ ניחושים, ובאופן כללי עבור טווח בגודל $n$ זה סדר גודל של $\log_2 n$.
+                    </p>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-3 mb-3">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">מה זה לוגריתם בבסיס 2?</h5>
+                    <p class="mb-0">
+                        הלוגריתם ($log$) הוא הפעולה ההופכית להעלאה בחזקה.
+                        המשוואה $\log_2 y = x$ שקולה למשוואה $2^x = y$ – כלומר, לאיזו חזקה $x$ צריך להעלות את $2$ כדי לקבל את $y$.
+                        תמיד מתקיים $\log n \lt n$ ולכן הלוגריתם יהיה מאוד שימושי לנו בהמשך.
+                    </p>
+                    <div class="p-3 rounded-3 bg-light border-end border-primary border-4">
+                        <span class="fw-bold text-primary">נסו בעצמכם:</span>
+                        מה תהיה התוצאה של $\log_2 8$?
+                        <span class="text-muted small">(תיבת בדיקה תתווסף בעתיד)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">איך זה גדל כשמגדילים את הטווח?</h5>
+                    <p class="mb-3">
+                        במדעי המחשב נשתמש רבות בלוגריתם בבסיס $2$ עבור מספר טבעי $n$ (לרוב נסמן פשוט $\log n$), כי בכל צעד אנחנו חוצים את הטווח לשני חלקים.
+                    </p>
+
+                    <div class="row g-3 text-center">
+                        <div class="col-12 col-sm-6">
+                            <div class="p-3 rounded-3 bg-light h-100">
+                                <div class="fw-bold text-primary mb-1">טווח 1–100</div>
+                                <div class="small text-secondary">$\log 100 \approx 7$ שאלות בממוצע</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="p-3 rounded-3 bg-light h-100">
+                                <div class="fw-bold text-primary mb-1">טווח 1–1,000</div>
+                                <div class="small text-secondary">$\log 1000 \approx 10$ שאלות בממוצע</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </details>
+        <div class="d-flex justify-content-end mb-4 my-4">
+            <a class="btn btn-primary btn-lg px-4" href="/HTML/BinarySearch">לדף הבא &larr;</a>
+        </div>
+</div>
+</body>
+</html>
