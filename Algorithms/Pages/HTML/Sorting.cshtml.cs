@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Algorithms.Pages.HTML
 {
-    public class DeterministicQuickSortModel : PageModel
+    public class SortingModel : PageModel
     {
         public void OnGet()
         {

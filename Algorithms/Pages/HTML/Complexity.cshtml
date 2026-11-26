@@ -21,11 +21,133 @@
 </head>
 <body class="bg-light">
 <div class="container px-4 py-4 text-end" dir="rtl" style="max-width: 72rem;">
+        <!--חלק 1 - שאלה-->
         <h1 class="fw-bold">שאלה - הרכבת פאזל</h1>
         <p class="fs-5 text-secondary mb-0">
             שני אנשים פותרים פאזלים (נניח שבצבע אחד וללא מסגרת), עם כמויות שונות של חלקים. האיש הראשון פותר פאזל אחד עם 500 חלקים, והשני פותר שני פאזלים עם 300 חלקים כל אחד. 
-            איזה מהאנשים מבצע פעולה קשה יותר?
+            איזה מהאנשים מבצע פעולה קשה יותר (במקרה הטוב)? נסו לחשוב ובדקו את תשובתכם. נסו להשתמש בנוסחה המצורפת:
         </p>
-</div>
+        <div class="row g-4 my-4">
+            <div class="col-12 col-lg-8">
+                <div class="card border-0 shadow-sm rounded-3 mb-3">
+                    <div class="card-body p-4 h-100 w-100" style="min-height:14.5rem">
+                        <span class="badge bg-danger-subtle text-danger mb-2">איש 1</span>
+                        <h5 class="fw-bold mb-2">פאזל אחד, 500 חלקים</h5>
+                        <details>
+                            <summary class="text-danger">חשפו את התשובה</summary>
+                        <p class="mb-0">
+                            האיש צריך למצוא את המיקום של כל אחד מהחלקים. לחלק הראשון יש לו 500 מקומות אפשריים, לחלק השני יש לו 499 מקומות
+                            אפשריים, וכן הלאה עד 1. נסכום את כל הפעולות ונקבל $500+499+498+...+2+1$ פעולות.
+                        </p>
+                        <div class="p-3 rounded-3 bg-light border-end border-danger border-4">
+                            לפי הנוסחה, נקבל בערך שכמות הפעולות היא $\frac{500^2}{2}=125,000$ פעולות.
+                        </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-body p-4" style="min-height:14.5rem">
+                        <span class="badge bg-success-subtle text-success mb-2">איש 2</span>
+                        <h5 class="fw-bold mb-2">שני פאזלים, 300 חלקים כל אחד.</h5>
+                        <details>
+                            <summary class="text-success">חשפו את התשובה</summary>
+                        <p class="mb-0">
+                            האיש צריך למצוא את המיקום המתאים של כל אחד מהחלקים. לחלק הראשון יש 300 מקומות אפשריים, לשני יש 299 אפשרויות וכן הלאה.
+                            סה"כ האיש השני צריך לעשות את זה פעמיים, ולכן יצטרך $2(300+299+298+...+2+1)$ פעולות.
+                        </p>
+                        <div class="p-3 rounded-3 bg-light border-end border-success border-4">
+                            לפי הנוסחה, נקבל בערך שכמות הפעולות היא $2\cdot\frac{300^2}{2}=300^2=90,000$ פעולות.
+                        </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4 d-flex">
+                <div class="card border-0 shadow-sm rounded-3 p-3 w-100">
+                    <div class="card-body">
+                        <span class="badge bg-primary-subtle text-primary mb-2">חשוב לדעת!</span>
+                        <h5 class="fw-bold mb-2">נוסחה לחישוב סכומים גדולים</h5>
+                        קיימת דרך (שהיא למעשה אלגוריתם) לחשב סכום של מספרים עוקבים
+                        מ-1 עד $n$ הדרך היא בכל פעם לחבר את המספר הראשון ואת המספר האחרון מהמספרים שנותרו עד שמגיעים
+                        לזוג המספרים או המספר האחרון. נשים לב שכל זוגות המספרים יהיו בדיוק $n+1$, ופשוט נותר
+                        להכפיל בכמות הזוגות שאנחנו מחשבים. סך הכל נקבל:
+                        $$
+                        1+2+3+...+n=\frac{n(n+1)}{2}
+                        $$
+                        כשנחשב כמות פעולות למספר גדול, נעגל מעט את התשובה ל-$\frac{n^2}{2}$ בשביל הנוחות.
+                    </div>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <div class="p-3 rounded-3 bg-light border-end border-warning border-4">
+                        <span class="fw-bold text-warning">מסקנה:</span>
+                        הפאזל שפותר האיש הראשון מרשים יותר משני הפאזלים שפותר האיש השני. ניתן להגיד שהפעולה שהאיש הראשון עושה יותר <strong>מסובכת.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--חלק 2 - מהי סיבוכיות-->
+        <h1 class="fw-bold">כיצד נמדוד יעילות של אלגוריתם?</h1>
+        <div class="card border-0 shadow-sm rounded-3 mb-3">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-2">ההגדרה של סיבוכיות</h5>
+                <p class="mb-2">
+                    במדעי המחשב, מודדים כמה אלגוריתם הוא יעיל לפי פי כמה כמות העבודה גדלה כשמגדילים את גודל הבעיה.
+                </p>
+                <p class="mb-0">
+                    לדוגמה, בחיפוש לינארי על רשימה באורך $n$ אנחנו עושים $n$ פעולות. אם הרשימה הייתה באורך $n^2$, היינו עושים $n^2$ פעולות.
+                </p>
+                <p class="mb-0">
+                    היחס הזה נקרא <strong>הסיבוכיות</strong> של הפעולה.
+                </p>
+            </div>
+        </div> 
+        <div class="card border-0 shadow-sm rounded-3 mb-3">
+            <div class="d-flex flex-column flex-lg-row-reverse align-items-center">
+                <div class="col-12 col-lg-8 order-1 order-lg-2">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-2">סוגי סיבוכיות</h5>
+                        <div class="p-3 rounded-3 bg-light border-end border-primary border-4">
+                            <span class="fw-bold text-primary">סיבוכיות קבועה:</span>
+                            אם כמות הפעולות שאנחנו עושים נשארת קבועה ללא קשר לגודל הבעיה, הסיבוכיות נקראת <strong>קבועה</strong> ומסמנים $O(1)$.
+                        </div>
+                        <div class="p-3 rounded-3 bg-light border-end border-warning border-4 my-3">
+                            <span class="fw-bold text-warning">סיבוכיות לינארית:</span>
+                            אם גודל הקלט וכמות הפעולות גדלים פי אותו מספר כמו בחיפוש לינארי, הסיבוכיות נקראת <strong>לינארית</strong> ומסמנים $O(n)$.
+                        </div>
+                        <div class="p-3 rounded-3 bg-light border-end border-success border-4 my-3">
+                            <span class="fw-bold text-success">סיבוכיות ריבועית:</span>
+                            אם כאשר מגדילים את הקלט פי $n$ טבעי כלשהו, כמות העבודה גדלה פי $n^2$, הסיבוכיות נקראת <strong>סיבוכיות ריבועית</strong> ומסמנים $O(n^2)$.
+                        </div>
+                        <div class="p-3 rounded-3 bg-light border-end border-danger border-4 my-3">
+                            <span class="fw-bold text-danger">רמות סיבוכיות גבוהות יותר:</span>
+                            יש רמות סיבוכיות גדולות יותר מ-$O(n^2)$, וכדאי להימנע מהן. לדוגמה $O(n^3)$ או אפילו $O(n^n)$.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 text-center p-3 order-2 order-lg-1">
+                    <video src="~/images/complexitymeme.mp4" class="img-fluid rounded-2 mx-auto" style="max-height:25rem" controls width="640" height="360" poster="thumbnail.jpg" preload="metadata" typeof="video/mp4"/>
+                    <small class="text-muted mt-2 d-block">כשמריצים אלגוריתם בלי להכין אותו מראש... <br />(Family Guy S4P1 - 2005)</small>
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-3 mb-3">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-2">בדקו את עצמכם</h5>
+                <p class="mb-2">
+                    אמרנו שחיפוש לינארי הוא אינו יעיל, ורץ בסיבוכיות $O(n)$, והראינו שלוקח במקרה הגרוע $n$ צעדים למצוא את
+                    האיבר שאנחנו מחפשים. לפי כך, מה תהיה הסיבוכיות של חיפוש בינארי? (תיבת בדיקה)
+                </p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-4 my-4">
+            <a class="btn btn-primary btn-lg px-4" href="/HTML/Sorting">לדף הבא &larr;</a>
+        </div>
+    </div>
+
 </body>
 </html>
