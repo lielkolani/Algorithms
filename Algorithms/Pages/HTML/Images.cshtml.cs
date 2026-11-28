@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Algorithms.Pages.HTML
 {
-    public class EncodingModel : PageModel
+    public class ImagesModel : PageModel
     {
         public void OnGet()
         {

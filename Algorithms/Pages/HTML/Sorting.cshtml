@@ -29,16 +29,153 @@
         </p>
         <div class="card border-0 shadow-sm rounded-3 my-4">
             <div class="card-body p-4 align-items-center">
-                <span class="badge bg-danger-subtle text-danger mb-2">חיפוש לינארי</span>
                 <h5 class="fw-bold mb-2">שימוש ברשימת עזר</h5>
                 <p class="mb-0">
                     נבנה רשימת עזר באותו האורך כמו הרשימה המקורית, בכל פעם נמצא את האיבר הכי קטן ברשימה ונוסיף אותו לרשימה החדשה.
                 </p>
-                <div class="p-3 rounded-3 bg-light border-end border-danger border-4">
-                    <span class="fw-bold text-danger">החיסרון:</span>
-                    חיפוש כזה יכול לקחת המון זמן. במקרה שלנו רק 10 פעולות, אך ברשימות באורך $n$ זה יכול לקחת אפילו יותר.
+                <div class="p-3 rounded-3 bg-light border-end border-danger border-4 my-3">
+                    <span class="fw-bold text-danger">הבעיה:</span>
+                    להשתמש ברשימת עזר זה יקר, ובאופן כללי במקרה הכי גרוע נצטרך לעבור על כל הרשימה $n$ פעמים, ולבצע עד $n$ פעולות, כלומר הסיבוכיות תהיה $O(n^2)$.
+                </div>
+                <div class="p-3 rounded-3 bg-light border-end border-success border-4 my-3">
+                    <span class="fw-bold text-success">פתרון:</span>
+                    במקום להשתמש ברשימת עזר, נבצע את כל התהליך בתוך הרשימה. נחפש איבר לא ממוין ברשימה, ונדחוף אותו שמאלה למקום מתאים.
+                    ככה החלק השמאלי של הרשימה לאט לאט יהיה ממוין עד שכל הרשימה תהיה ממוינת.
+                </div>
+                
+                המיון שהצגנו נקרא <strong>מיון הכנסה</strong> או <strong>Insertion Sort.</strong> הוא לא מאוד יעיל ולכן לא משתמשים בו ברוב האלגוריתמים
+                המודרניים. במקרה הממוצע (האיברים מפוזרים באופן שווה יחסית ברשימה) נקבל שהסיבוכיות היא בערך $O(n^2)$, ובמקרה הטוב (האיבר הראשון בחיפוש הוא הקטן ביותר)
+                 נקבל $O(n)$.
+            </div>
+        </div>
+        <p class="fs-5 text-secondary mb-0">
+            נראה דרכים שונות למיין רשימה, וכמה הן יעילות ביחס לשיטות אחרות.
+        </p>
+        <h1 class="fw-bold p-4">שיטות למיון רשימה</h1>
+        <div class="card border-0 shadow-sm p-3 rounded-3 border-end border-warning border-4 my-3">
+            <div class="card-body p-4 align-items-center">
+                <h5 class="fw-bold mb-2">מיון בועות - Bubble Sort</h5>
+                <p class="mb-0">
+                    דומה למיון הכנסה והוא בסיסי מאוד. נעבור על הרשימה ונבדוק על כל זוג איברים האם הם בסדר הנכון. אם לא,
+                    נחליף ביניהם. ברגע שנעבור על כל הרשימה, נעבור עליה שוב ושוב עד שנקבל רשימה ממוינת. לפי איך שהמיון עובד,
+                    האיברים הגדולים ברשימה "יפעפעו" לסוף הרשימה, ובכך הרשימה ממוינת באופן אוטומטי עם כל ההחלפות.
+                </p>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-warning">סיבוכיות:</span>
+                    במקרה הגרוע, הרשימה ממוינת בכיוון השני או ממוינת. אם הרשימה ממוינת בכיוון השני (מהגדול לקטן), נצטרך להחליף בין
+                    כל זוג איברים בשלב מסוים, ונבצע את כל המעברים על הרשימה. סה"כ $O(n^2)$. אם הרשימה ממוינת, בכל זאת נעבור על הרשימה 
+                    $n$ פעמים ונבצע $n$ השוואות, ולכן הסיבוכיות תהיה $O(n^2)$.
+                </div>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-warning">אופטימיזציה אפשרית:</span>
+                    נוכל להוסיף משתנה בוליאני שמאותחל כ-true ובודק האם בוצעו החלפות בבדיקה הנוכחית. אם לא, זה אומר שהרשימה ממוינת
+                    ולכן ניתן לעצור. אם כן, נצטרך להמשיך לעבור על הרשימה. במקרה הזה, רק נצטרך לבצע $n$ השוואות ולכן הסיבוכיות תהיה $O(n)$.
                 </div>
             </div>
+        </div>
+        <div class="card border-0 shadow-sm p-3 rounded-3 border-end border-danger border-4 my-3">
+            <div class="card-body p-4 align-items-center">
+                <h5 class="fw-bold mb-2">מיון בחירה - Selection Sort</h5>
+                <p class="mb-0">
+                    מיון מאוד לא יעיל. מחפשים את האיבר הכי קטן בחלק הלא ממוין של הרשימה, ומחליפים אותו באיבר הראשון ברשימה. ממשיכים כך,
+                    ומחליפים את האיבר הקטן ברשימה הלא ממוינת באיבר השני, וכן הלאה. בניגוד למיון הכנסה כאן מבצעים רק
+                    החלפה אחת בכל פעם, אבל לחפש את האיבר הקטן ברשימה לוקח המון זמן ולכן זה לא יעיל.
+                </p>
+                <div class="p-3 rounded-3 bg-light border-4 border-end my-3">
+                    <span class="fw-bold text-danger">סיבוכיות:</span>
+                    במקרה הגרוע, האיבר הכי קטן ברשימה יהיה בסוף הרשימה והרשימה תהיה ממוינת הפוך. ולכן נצטרך לבצע $n$ חיפושים בכל $n$ האיברים. סך הכל 
+                    נקבל שהסיבוכיות היא $O(n^2)$.
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm p-3 rounded-3 border-end border-success border-4 my-3">
+            <div class="card-body p-4 align-items-center">
+                <h5 class="fw-bold mb-2">מיון מיזוג - Merge Sort</h5>
+                <p class="mb-0">
+                    מיון יותר יעיל ושימושי יותר. בכל ריצה אנחנו חוצים את הרשימה לחצי, ואז חוצים את חצאי הרשימות האלו וכן הלאה... עד
+                    שנקבל רשימות בגודל של איבר אחד, ואז נמיין אותן לפי החצאים ונחבר לרשימה הסופית. המיון הזה עושה שימוש בשיטת תכנות שנקראת <strong>רקורסיה</strong>, 
+                    ונראה אותה בהמשך.
+                </p>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-success">סיבוכיות:</span>
+                    הפיצול לחצאים יוצר סה"כ $\log n$ חיתוכים לחצי, ובהרצה הסופית אנחנו עוברים בסך הכל על כל $n$ האיברים שברשימה, ולכן הסיבוכיות תהיה $O(n \log n)$.
+                </div>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-success">אופטימיזציה אפשרית:</span>
+                    כאשר יש לנו רשימות גדולות, רקורסיה יכולה להוביל לעלות גבוהה יותר. לכן, נמיין את תת הרשימות בעזרת מיון הכנסה שראינו,
+                    מה שיכול להוביל לעלות נמוכה יותר. זה לא משפר את הסיבוכיות, אבל כן משפר את הזמן המעשי בפועל.
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm p-3 rounded-3 border-end border-primary border-4 my-3">
+            <div class="card-body p-4 align-items-center">
+                <h5 class="fw-bold mb-2">מיון מהיר - Quick Sort</h5>
+                <p class="mb-0">
+                    המיון הכי ידוע. בוחרים איבר שהוא הציר (Pivot) ומשנים את הרשימה לאיברים שקטנים ממנו משמאלו ואיברים שגדולים ממנו מימינו.
+                    לאחר מכן מבצעים אותו תהליך על שני החלקים עד ששוב נגיע לאיברים יחידים. בסוף נקבל רשימה ממוינת טבעית. קיימים שני סוגים של מיון מהיר:
+                </p>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-primary">מיון מהיר אקראי:</span>
+                    בוחרים באקראי איבר ציר במקום לבחור ידנית. זה יוצר מצב שבו הסיכוי למקרי קצה נמוך יותר הסתברותית, ולכן בממוצע נקבל
+                    סיבוכיות עקבית, שהיא $O(n\log n)$. תיאורטית קיים המקרה בו נבחר איבר ציר גרוע בכל שלב, אבל הסיכויים נמוכים.
+                </div>
+                <div class="p-3 rounded-3 bg-light border-end border-4 my-3">
+                    <span class="fw-bold text-primary">מיון מהיר דטרמיניסטי:</span>
+                    בוחרים סוג של איבר ציר שיהיה קבוע לאורך כל ההרצות. לדוגמה האיבר הראשון, האחרון או האמצעי. בכל קריאה נבחר את האיבר
+                    הזה ברשימה. זה תורם לכך שאין צורך באקראיות, אבל תמיד יהיו קלטים כמו רשימה ממוינת שיובילו לסיבוכיות גרועה.
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4">
+                <div class="p-3 rounded-3 bg-light border-end border-primary border-4">
+                    ניתן לראות וללמוד עוד באתר <a href="https://www.geeksforgeeks.org/dsa/dsa-tutorial-learn-data-structures-and-algorithms/">Geeks for Geeks</a>. יש שם
+                    הדגמות של שיטות המיון שדיברנו עליהן, ובכללי הסברים על המון תחומים במדעי המחשב.
+                </div>
+            </div>
+        </div>
+        <h1 class="fw-bold p-4">העשרה: שיטות מיון סאטיריות</h1>
+        <p class="fs-5 text-secondary mb-0">בנוסף לכל שיטות המיון שהצגנו, יש גם שיטות מיון סאטיריות שהמטרה שלהן היא לא באמת
+            למיין אלא רק להמחיש למה סיבוכיות נכונה וחשובה. נראה כמה:
+        </p>
+        <div class="row g-4 my-4">
+            <div class="card border shadow-sm p-3 rounded-3 border-end border-4 my-3">
+                <div class="card-body p-4 align-items-center">
+                    <h5 class="fw-bold mb-2">מיון בוגו - Bogo Sort</h5>
+                    <p class="mb-0">
+                        לוקחים את הרשימה, מערבבים אותה באופן אקראי, ובודקים האם היא ממוינת. אם לא, עושים זאת שוב עד שהיא תהיה ממוינת. הסיבוכיות הממוצעת היא $O(n!)$
+                        , כאשר $n!=n(n-1)(n-2)(n-3)...(2)(1)$. במקרה הטוב הסיבוכיות היא $O(n)$ אבל זה כמובן כמעט ובלתי אפשרי.
+                    </p>
+                </div>
+            </div>
+            <div class="card border shadow-sm p-3 rounded-3 border-end border border-4 my-3">
+                <div class="card-body p-4 align-items-center">
+                    <h5 class="fw-bold mb-2">מיון נס - Miracle Sort</h5>
+                    <p class="mb-0">
+                        בכל כמה זמן בודקים אם הרשימה ממוינת, אם לא, בודקים שוב בעוד כמה דקות בתקווה שמתישהו היא תתמיין מעצמה... סיבוכיות $O(\infty)$.
+                    </p>
+                </div>
+            </div>
+            <div class="card border shadow-sm p-3 rounded-3 border-end border-4 my-3">
+                <div class="card-body p-4 align-items-center">
+                    <h5 class="fw-bold mb-2">מיון הדיקטטור - Dictator Sort</h5>
+                    <p class="mb-0">
+                        עוברים על הרשימה, אם יש איבר שלא ממוין מוחקים אותו. בסך הכל בסוף נקבל רשימה ממוינת. סיבוכיות $O(n)$.
+                    </p>
+                </div>
+            </div>
+            <div class="card border shadow-sm p-3 rounded-3 border-end border-4 my-3">
+                <div class="card-body p-4 align-items-center">
+                    <h5 class="fw-bold mb-2">מיון ת'אנוס - Thanos Sort</h5>
+                    <p class="mb-0">
+                        עובר על הרשימה, ומוחק חצי מהאיברים באקראיות. עושה זאת שוב ושוב עד שהרשימה ממוינת.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-4 my-4">
+            <a class="btn btn-primary btn-lg px-4" href="/HTML/Recursion">לדף הבא &larr;</a>
         </div>
     </div>
     </body>

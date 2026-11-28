@@ -134,7 +134,23 @@
                 </div>
             </div>
         </div>
-        <div class="card border-0 shadow-sm rounded-3 mb-3">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4">
+                <div class="p-3 rounded-3 bg-light border-end border-info border-4">
+                    <span class="fw-bold text-info">הערה:</span>
+                        כשננתח סיבוכיות של פעולות, לא נתייחס למספרים קבועים, ומכפלה של רמות סיבוכיות זהה למכפלה רגילה. לדוגמה:
+                        $$
+                        O(n+7)=O(n)
+                        $$
+                        $$
+                        O(n)\cdot O(n+5)=O(n(n+5))=O(n^2+5n)=O(n^2+n)=O(n^2)
+                        $$
+                        בנוסף, כאשר מחברים $n$ בחזקות שונות בתוך סיבוכיות, החזקה הכי גבוהה היא הדומיננטית ולכן ניתן להשמיט את השאר כפי
+                        שראינו בדוגמה.
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-3 mb-3 my-3">
             <div class="card-body p-4">
                 <h5 class="fw-bold mb-2">בדקו את עצמכם</h5>
                 <p class="mb-2">
